@@ -1,2 +1,2 @@
 # solution codes
- problems that i have solvede
+ problems that i have solved

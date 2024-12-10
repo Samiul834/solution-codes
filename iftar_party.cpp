@@ -1,30 +1,41 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    int t,a,b,x,i,y;
-    cin>>t;
-    for(i=1;i<=t;i++){
-        cin>>a>>b;
-        cout<<"case "<<i<<": ";
-        vector<int> output;
-        x=a-b;
-        y=b+1;
-        for(int j=y;j<=x;j++){
-            if(x%j==0){
-                output.push_back(j);
+
+int main() {
+    int t;
+    cin >> t;
+
+    for (int i = 1; i <= t; i++) {
+        long long a, b;
+        cin >> a >> b;
+
+        long long x = a - b, y = b + 1;
+        cout << "Case " << i << ": ";
+
+        if (x <= b) {
+            cout << "impossible\n";
+            continue;
+        }
+
+        vector<long long> divisors;
+        for (long long j = 1; j * j <= x; j++) {
+            if (x % j == 0) {
+                if (j > b) divisors.push_back(j);
+                if (x / j > b && x / j != j) divisors.push_back(x / j);
             }
         }
-        if(output.empty()){
-            cout<<"impossible";
-        }
-        else{
-            for(int q=0;q<output.size();q++){
-                if(q>0) cout<<" ";
-                cout<<output[q];
+
+        if (divisors.empty()) {
+            cout << "impossible\n";
+        } else {
+            sort(divisors.begin(), divisors.end());
+            for (size_t j = 0; j < divisors.size(); j++) {
+                if (j) cout << " ";
+                cout << divisors[j];
             }
-            cout<<"\n";
+            cout << "\n";
         }
     }
+
     return 0;
 }
